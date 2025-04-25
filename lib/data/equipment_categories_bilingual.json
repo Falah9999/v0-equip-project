@@ -1,0 +1,108 @@
+{
+  "معدات تحريك التربة": {
+    "en": "Earthmoving Equipment",
+    "subcategories": [
+      ["حفارات", "Excavators"],
+      ["جرافات انزلاقية", "Skid Steers"],
+      ["محركات خلفية", "Backhoes"],
+      ["بلدوزرات", "Bulldozers"],
+      ["خنادق", "Trenchers"],
+      ["حفارات صغيرة", "Mini Excavators"],
+      ["أخرى", "Others"]
+    ]
+  },
+  "منصات العمل المرتفعة": {
+    "en": "Aerial Work Platforms",
+    "subcategories": [
+      ["رافعات بوم", "Boom Lifts"],
+      ["رافعات مقصية", "Scissor Lifts"],
+      ["منصات فردية", "Personnel Lifts"],
+      ["أخرى", "Others"]
+    ]
+  },
+  "مناولة المواد": {
+    "en": "Material Handling",
+    "subcategories": [
+      ["رافعات شوكية", "Forklifts"],
+      ["تليهاندلر", "Telehandlers"],
+      ["جاك البالتة", "Pallet Jacks"],
+      ["أخرى", "Others"]
+    ]
+  },
+  "الكهرباء والتكييف": {
+    "en": "Power & HVAC",
+    "subcategories": [
+      ["مولدات ديزل", "Diesel Generators"],
+      ["أبراج إنارة", "Light Towers"],
+      ["ضواغط هواء", "Air Compressors"],
+      ["سخانات ومكيفات محمولة", "Electric Heaters / Portable AC"],
+      ["أخرى", "Others"]
+    ]
+  },
+  "الخرسانة والبناء": {
+    "en": "Concrete & Masonry",
+    "subcategories": [
+      ["خلاطات خرسانة", "Concrete Mixers"],
+      ["أدوات تنعيم", "Power Trowels"],
+      ["مناشير خرسانة", "Concrete Saws"],
+      ["مثاقب لب", "Core Drills"],
+      ["قواطع وثانيات حديد", "Rebar Cutters/Benders"],
+      ["أخرى", "Others"]
+    ]
+  },
+  "معدات الدك والرص": {
+    "en": "Compaction",
+    "subcategories": [
+      ["مداحل صفيحية", "Plate Compactors"],
+      ["مداحل قفز", "Rammers"],
+      ["مداحل راكبة", "Ride-on Rollers"],
+      ["مداحل يدوية", "Walk-behind Rollers"],
+      ["أخرى", "Others"]
+    ]
+  },
+  "الشاحنات والمقطورات": {
+    "en": "Trucks & Trailers",
+    "subcategories": [
+      ["شاحنات فلاتبيد", "Flatbed Trucks"],
+      ["بيك أب", "Pickup Trucks"],
+      ["صهاريج ماء", "Water Tankers"],
+      ["مقطورات معدات", "Equipment Trailers"],
+      ["أخرى", "Others"]
+    ]
+  },
+  "معدات وأدوات خفيفة": {
+    "en": "General Tools & Light Equipment",
+    "subcategories": [
+      ["مولدات محمولة", "Portable Generators"],
+      ["ماكينات لحام", "Welding Machines"],
+      ["أدوات قطع", "Cutting Tools"],
+      ["غسالات ضغط", "Pressure Washers"],
+      ["مثاقب وتكسير", "Drills & Breakers"],
+      ["أخرى", "Others"]
+    ]
+  },
+  "البنية التحتية للموقع": {
+    "en": "Site Infrastructure",
+    "subcategories": [
+      ["سقالات", "Scaffolding"],
+      ["حواجز مؤقتة", "Temporary Barriers / Fencing"],
+      ["دورات مياه متنقلة", "Mobile Toilets"],
+      ["مكاتب ومخازن موقع", "Site Cabins / Offices"],
+      ["أخرى", "Others"]
+    ]
+  },
+  "الضخ والتمديدات": {
+    "en": "Pumps & Plumbing",
+    "subcategories": [
+      ["مضخات غاطسة", "Submersible Pumps"],
+      ["مضخات طرد مركزي", "Trash Pumps"],
+      ["آلات قص أنابيب", "Pipe Threaders"],
+      ["غسالات مياه بالضغط العالي", "Water Jetters"],
+      ["أخرى", "Others"]
+    ]
+  },
+  "أخرى": {
+    "en": "Others",
+    "subcategories": []
+  }
+}

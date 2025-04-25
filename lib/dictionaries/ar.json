@@ -1,0 +1,115 @@
+{
+  "home": {
+    "title": "تأجير معدات البناء في الكويت",
+    "subtitle": "تواصل مع مالكي المعدات للإيجارات قصيرة أو طويلة الأجل",
+    "categories": "تصفح حسب الفئة",
+    "featured": "المعدات المميزة"
+  },
+  "search": {
+    "placeholder": "ابحث عن معدات",
+    "category": "نوع المعدات",
+    "location": "الموقع",
+    "date": "التاريخ",
+    "search": "بحث عن معدات",
+    "categories": {
+      "title": "الفئات",
+      "excavators": "حفارات",
+      "loaders": "لودرات",
+      "trucks": "شاحنات",
+      "cranes": "رافعات",
+      "tools": "أدوات",
+      "other": "معدات أخرى"
+    }
+  },
+  "promo": {
+    "title": "عرض خاص للمقاولين",
+    "description": "احصل على خصم 10٪ على أول إيجار للمعدات. عرض محدود لفترة محدودة للعملاء الجدد",
+    "cta": "اعرف المزيد"
+  },
+  "categories": {
+    "excavators": "حفارات",
+    "loaders": "لودرات",
+    "trucks": "شاحنات",
+    "cranes": "رافعات",
+    "tools": "أدوات",
+    "other": "أخرى"
+  },
+  "equipment": {
+    "title": "قائمة المعدات",
+    "viewDetails": "عرض التفاصيل",
+    "dailyRate": "في اليوم",
+    "description": "الوصف",
+    "specifications": "المواصفات",
+    "pricing": "التسعير",
+    "dailyRate": "السعر اليومي",
+    "weeklyRate": "السعر الأسبوعي",
+    "similar": "معدات مشابهة",
+    "available": "متاح",
+    "unavailable": "غير متاح",
+    "noResults": "لم يتم العثور على معدات تطابق معايير البحث",
+    "notFound": "المعدات غير موجودة",
+    "notFoundDesc": "المعدات التي تبحث عنها غير موجودة أو تمت إزالتها."
+  },
+  "filters": {
+    "title": "الفلاتر",
+    "categories": {
+      "title": "الفئات",
+      "excavators": "حفارات",
+      "loaders": "لودرات",
+      "trucks": "شاحنات",
+      "cranes": "رافعات",
+      "tools": "أدوات",
+      "other": "معدات أخرى"
+    },
+    "locations": {
+      "title": "المواقع"
+    },
+    "priceRange": "نطاق السعر (د.ك)",
+    "availability": "متاح الآن",
+    "clear": "مسح الفلاتر",
+    "apply": "تطبيق الفلاتر"
+  },
+  "specs": {
+    "property": "الخاصية",
+    "value": "القيمة"
+  },
+  "owner": {
+    "title": "عن المالك",
+    "responseTime": "وقت الاستجابة",
+    "memberSince": "عضو منذ",
+    "contact": "اتصل بالمالك",
+    "message": "إرسال رسالة"
+  },
+  "rentForm": {
+    "title": "طلب استئجار",
+    "startDate": "تاريخ البدء",
+    "endDate": "تاريخ الانتهاء",
+    "duration": "مدة الإيجار",
+    "days": "أيام",
+    "weeks": "أسابيع",
+    "months": "شهور",
+    "message": "رسالة إلى المالك",
+    "messagePlaceholder": "قدم نفسك واشرح احتياجات مشروعك...",
+    "submit": "طلب استئجار",
+    "success": "تم إرسال الطلب!"
+  },
+  "dashboard": {
+    "ownerTitle": "لوحة تحكم المالك",
+    "renterTitle": "لوحة تحكم المستأجر",
+    "myEquipment": "معداتي",
+    "addEquipment": "إضافة معدات",
+    "rentalRequests": "طلبات الإيجار",
+    "currentRentals": "الإيجارات الحالية",
+    "rentalHistory": "سجل الإيجارات",
+    "equipmentStats": "إحصائيات المعدات",
+    "totalEquipment": "إجمالي المعدات",
+    "activeRentals": "الإيجارات النشطة",
+    "pendingRequests": "الطلبات المعلقة",
+    "monthlyEarnings": "الأرباح الشهرية",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "approve": "موافقة",
+    "decline": "رفض",
+    "viewDetails": "عرض التفاصيل"
+  }
+}

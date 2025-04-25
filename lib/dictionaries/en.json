@@ -1,0 +1,115 @@
+{
+  "home": {
+    "title": "Rent Construction Equipment in Kuwait",
+    "subtitle": "Connect with equipment owners for short or long-term rentals",
+    "categories": "Browse by Category",
+    "featured": "Featured Equipment"
+  },
+  "search": {
+    "placeholder": "Search for equipment",
+    "category": "Equipment Type",
+    "location": "Location",
+    "date": "Date",
+    "search": "Search Equipment",
+    "categories": {
+      "title": "Categories",
+      "excavators": "Excavators",
+      "loaders": "Loaders",
+      "trucks": "Trucks",
+      "cranes": "Cranes",
+      "tools": "Tools",
+      "other": "Other Equipment"
+    }
+  },
+  "promo": {
+    "title": "Special Offer for Contractors",
+    "description": "Get 10% off on your first equipment rental. Limited time offer for new customers.",
+    "cta": "Learn More"
+  },
+  "categories": {
+    "excavators": "Excavators",
+    "loaders": "Loaders",
+    "trucks": "Trucks",
+    "cranes": "Cranes",
+    "tools": "Tools",
+    "other": "Other"
+  },
+  "equipment": {
+    "title": "Equipment Listings",
+    "viewDetails": "View Details",
+    "dailyRate": "per day",
+    "description": "Description",
+    "specifications": "Specifications",
+    "pricing": "Pricing",
+    "dailyRate": "Daily Rate",
+    "weeklyRate": "Weekly Rate",
+    "similar": "Similar Equipment",
+    "available": "Available",
+    "unavailable": "Unavailable",
+    "noResults": "No equipment found matching your criteria",
+    "notFound": "Equipment Not Found",
+    "notFoundDesc": "The equipment you're looking for doesn't exist or has been removed."
+  },
+  "filters": {
+    "title": "Filters",
+    "categories": {
+      "title": "Categories",
+      "excavators": "Excavators",
+      "loaders": "Loaders",
+      "trucks": "Trucks",
+      "cranes": "Cranes",
+      "tools": "Tools",
+      "other": "Other Equipment"
+    },
+    "locations": {
+      "title": "Locations"
+    },
+    "priceRange": "Price Range (KWD)",
+    "availability": "Available Now",
+    "clear": "Clear Filters",
+    "apply": "Apply Filters"
+  },
+  "specs": {
+    "property": "Property",
+    "value": "Value"
+  },
+  "owner": {
+    "title": "About the Owner",
+    "responseTime": "Response Time",
+    "memberSince": "Member Since",
+    "contact": "Contact Owner",
+    "message": "Send Message"
+  },
+  "rentForm": {
+    "title": "Request to Rent",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "duration": "Rental Duration",
+    "days": "Days",
+    "weeks": "Weeks",
+    "months": "Months",
+    "message": "Message to Owner",
+    "messagePlaceholder": "Introduce yourself and explain your project needs...",
+    "submit": "Request to Rent",
+    "success": "Request Sent!"
+  },
+  "dashboard": {
+    "ownerTitle": "Owner Dashboard",
+    "renterTitle": "Renter Dashboard",
+    "myEquipment": "My Equipment",
+    "addEquipment": "Add Equipment",
+    "rentalRequests": "Rental Requests",
+    "currentRentals": "Current Rentals",
+    "rentalHistory": "Rental History",
+    "equipmentStats": "Equipment Statistics",
+    "totalEquipment": "Total Equipment",
+    "activeRentals": "Active Rentals",
+    "pendingRequests": "Pending Requests",
+    "monthlyEarnings": "Monthly Earnings",
+    "edit": "Edit",
+    "delete": "Delete",
+    "approve": "Approve",
+    "decline": "Decline",
+    "viewDetails": "View Details"
+  }
+}
