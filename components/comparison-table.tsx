@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useTransition } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -8,7 +8,7 @@ import { Check, X, Trash2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useComparison } from "@/contexts/comparison-context"
 import type { Locale } from "@/lib/i18n-config"
-import { getEquipmentById } from "@/lib/data"
+import { getEquipmentByIds } from "@/lib/actions"
 import type { EquipmentItem } from "@/components/equipment-card"
 
 interface ComparisonTableProps {
@@ -21,6 +21,7 @@ export default function ComparisonTable({ lang, sharedIds = [] }: ComparisonTabl
   const [mounted, setMounted] = useState(false)
   const [displayItems, setDisplayItems] = useState<EquipmentItem[]>([])
   const [isLoading, setIsLoading] = useState(sharedIds.length > 0)
+  const [isPending, startTransition] = useTransition()
   const router = useRouter()
 
   // Load shared items if provided
@@ -33,18 +34,20 @@ export default function ComparisonTable({ lang, sharedIds = [] }: ComparisonTabl
           // Clear existing comparison items
           clearComparison()
 
-          // Load each shared item
-          const items = await Promise.all(sharedIds.map((id) => getEquipmentById(id)))
+          // Use the server action to fetch equipment items
+          startTransition(async () => {
+            const validItems = await getEquipmentByIds(sharedIds)
 
-          // Filter out any null items and add to comparison
-          const validItems = items.filter(Boolean) as EquipmentItem[]
-          validItems.forEach((item) => addToComparison(item))
+            // Add items to comparison
+            validItems.forEach((item) => addToComparison(item))
 
-          // Update URL to remove the ids parameter
-          router.replace(`/${lang}/equipment/compare`, { scroll: false })
+            // Update URL to remove the ids parameter
+            router.replace(`/${lang}/equipment/compare`, { scroll: false })
+
+            setIsLoading(false)
+          })
         } catch (error) {
           console.error("Error loading shared items:", error)
-        } finally {
           setIsLoading(false)
         }
       }
@@ -68,7 +71,7 @@ export default function ComparisonTable({ lang, sharedIds = [] }: ComparisonTabl
     }
   }, [comparisonItems, mounted])
 
-  if (!mounted || isLoading) {
+  if (!mounted || isLoading || isPending) {
     return (
       <div className="h-96 flex items-center justify-center">
         <div className="animate-pulse bg-muted h-full w-full rounded-lg"></div>
