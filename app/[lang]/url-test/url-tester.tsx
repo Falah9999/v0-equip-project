@@ -23,7 +23,6 @@ export function UrlTester({ lang }: { lang: Locale }) {
     setBaseUrl(getSiteBaseUrl())
 
     // Get the environment variable value directly
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || (typeof window !== "undefined" ? window.location.origin : "")
     setEnvVarValue(process.env.NEXT_PUBLIC_SITE_URL || "Not set")
 
     // Get window.location.origin
@@ -64,7 +63,10 @@ export function UrlTester({ lang }: { lang: Locale }) {
           <div>
             <Label htmlFor="base-url">Base URL from getSiteBaseUrl()</Label>
             <Input id="base-url" value={baseUrl} readOnly />
-            <p className="text-sm text-muted-foreground mt-1">This is the value used for generating share URLs</p>
+            <p className="text-sm text-muted-foreground mt-1">
+              This is the value used for generating share URLs. In browser environments, this will always be
+              window.location.origin.
+            </p>
           </div>
         </CardContent>
       </Card>

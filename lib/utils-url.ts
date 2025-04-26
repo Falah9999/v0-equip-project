@@ -1,8 +1,15 @@
 /**
- * Gets the base URL for the site, using the NEXT_PUBLIC_SITE_URL environment variable
- * or falling back to window.location.origin in the browser
+ * Gets the base URL for the site, prioritizing window.location.origin in browser environments
+ * and falling back to NEXT_PUBLIC_SITE_URL in server environments
  */
 export function getSiteBaseUrl(): string {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || (typeof window !== "undefined" ? window.location.origin : "")
+  let baseUrl = ""
+
+  if (typeof window !== "undefined") {
+    baseUrl = window.location.origin
+  } else {
+    baseUrl = process.env.NEXT_PUBLIC_SITE_URL || ""
+  }
+
   return baseUrl
 }
