@@ -206,7 +206,7 @@ export default async function EquipmentListingPage({
             }}
             lang={lang}
             showRentButton={true}
-            onRentClick={(id) => console.log(`Request to rent equipment ${id}`)}
+            // Remove the event handler that was causing the error
           />
         </div>
       </div>

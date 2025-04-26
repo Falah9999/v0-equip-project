@@ -1,3 +1,6 @@
+"use client"
+
+import { useRouter } from "next/navigation"
 import type { Locale } from "@/lib/i18n-config"
 import { EquipmentCard, type EquipmentItem } from "@/components/equipment-card"
 
@@ -18,16 +21,17 @@ interface EquipmentGridProps {
   }
   lang: Locale
   showRentButton?: boolean
-  onRentClick?: (id: string) => void
 }
 
-export default function EquipmentGrid({
-  equipment,
-  dict,
-  lang,
-  showRentButton = false,
-  onRentClick,
-}: EquipmentGridProps) {
+export default function EquipmentGrid({ equipment, dict, lang, showRentButton = false }: EquipmentGridProps) {
+  const router = useRouter()
+
+  // Handle rent click internally
+  const handleRentClick = (id: string) => {
+    // Navigate to the equipment detail page
+    router.push(`/${lang}/equipment/${id}`)
+  }
+
   if (equipment.length === 0) {
     return (
       <div className="text-center py-12">
@@ -54,7 +58,7 @@ export default function EquipmentGrid({
           comparisonFullLabel={dict.comparisonFull}
           shareLabel={dict.share}
           showRentButton={showRentButton}
-          onRentClick={onRentClick}
+          onRentClick={handleRentClick}
         />
       ))}
     </div>
