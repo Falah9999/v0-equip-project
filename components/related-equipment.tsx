@@ -1,3 +1,6 @@
+"use client"
+
+import { useState, useEffect } from "react"
 import type { Locale } from "@/lib/i18n-config"
 import EquipmentGrid from "@/components/equipment-grid"
 import type { EquipmentItem } from "@/components/equipment-card"
@@ -16,6 +19,13 @@ interface RelatedEquipmentProps {
 }
 
 export default function RelatedEquipment({ category, currentId, dict, lang }: RelatedEquipmentProps) {
+  const [mounted, setMounted] = useState(false)
+
+  // Only run after client-side hydration
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   // Mock data for related equipment
   const relatedEquipment: EquipmentItem[] = [
     {
@@ -80,6 +90,17 @@ export default function RelatedEquipment({ category, currentId, dict, lang }: Re
     addedToCompare: lang === "ar" ? "تمت الإضافة" : "Added",
     comparisonFull: lang === "ar" ? "المقارنة ممتلئة" : "Comparison full",
     share: lang === "ar" ? "مشاركة" : "Share",
+  }
+
+  // Don't render the full component until after client-side hydration
+  if (!mounted) {
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {[...Array(3)].map((_, index) => (
+          <div key={index} className="h-64 bg-muted rounded-lg animate-pulse"></div>
+        ))}
+      </div>
+    )
   }
 
   return (

@@ -40,7 +40,9 @@ export default async function Home({
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">{dict.home.subtitle}</p>
         </div>
         <Suspense fallback={<SearchBarFallback />}>
-          <SearchBar dict={dict.search} lang={lang} locations={locations} categories={categories} />
+          <div>
+            <SearchBar dict={dict.search} lang={lang} locations={locations} categories={categories} />
+          </div>
         </Suspense>
       </section>
 
@@ -49,14 +51,18 @@ export default async function Home({
       <section className="my-12">
         <h2 className="text-2xl font-semibold mb-6">{dict.home.categories}</h2>
         <Suspense fallback={<CategoryGridFallback />}>
-          <CategoryGrid dict={dict.categories} />
+          <div>
+            <CategoryGrid dict={dict.categories} />
+          </div>
         </Suspense>
       </section>
 
       <section className="my-12">
         <h2 className="text-2xl font-semibold mb-6">{dict.home.featured}</h2>
         <Suspense fallback={<FeaturedEquipmentFallback />}>
-          <FeaturedEquipment dict={dict.equipment} lang={lang} />
+          <div>
+            <FeaturedEquipment dict={dict.equipment} lang={lang} />
+          </div>
         </Suspense>
       </section>
     </div>

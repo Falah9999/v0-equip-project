@@ -1,3 +1,6 @@
+"use client"
+
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import type { Locale } from "@/lib/i18n-config"
 
@@ -6,8 +9,19 @@ interface FooterProps {
 }
 
 export default function Footer({ lang }: FooterProps) {
-  // Use a synchronous operation to get the current year
-  const year = new Date().getFullYear()
+  const [mounted, setMounted] = useState(false)
+  const [currentYear, setCurrentYear] = useState("2023")
+
+  // Only run after client-side hydration
+  useEffect(() => {
+    setMounted(true)
+    setCurrentYear(new Date().getFullYear().toString())
+  }, [])
+
+  // Don't render the full component until after client-side hydration
+  if (!mounted) {
+    return <footer className="border-t bg-muted/40 h-64"></footer>
+  }
 
   return (
     <footer className="border-t bg-muted/40">
@@ -104,7 +118,7 @@ export default function Footer({ lang }: FooterProps) {
 
         <div className="mt-8 border-t pt-8 text-center text-sm text-muted-foreground">
           <p>
-            © {year} CoLink. {lang === "en" ? "All rights reserved." : "جميع الحقوق محفوظة."}
+            © {currentYear} CoLink. {lang === "en" ? "All rights reserved." : "جميع الحقوق محفوظة."}
           </p>
         </div>
       </div>

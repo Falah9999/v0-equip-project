@@ -24,45 +24,43 @@ export default function ComparisonTable({ lang, sharedIds = [] }: ComparisonTabl
   const [isPending, startTransition] = useTransition()
   const router = useRouter()
 
-  // Load shared items if provided
-  useEffect(() => {
-    const loadSharedItems = async () => {
-      if (sharedIds.length > 0) {
-        setIsLoading(true)
-
-        try {
-          // Clear existing comparison items
-          clearComparison()
-
-          // Use the server action to fetch equipment items
-          startTransition(async () => {
-            const validItems = await getEquipmentByIds(sharedIds)
-
-            // Add items to comparison
-            validItems.forEach((item) => addToComparison(item))
-
-            // Update URL to remove the ids parameter
-            router.replace(`/${lang}/equipment/compare`, { scroll: false })
-
-            setIsLoading(false)
-          })
-        } catch (error) {
-          console.error("Error loading shared items:", error)
-          setIsLoading(false)
-        }
-      }
-    }
-
-    if (sharedIds.length > 0) {
-      loadSharedItems()
-    }
-  }, [sharedIds, addToComparison, clearComparison, lang, router])
-
-  // Only show after client-side hydration to prevent hydration mismatch
+  // Only run after client-side hydration
   useEffect(() => {
     setMounted(true)
     setDisplayItems(comparisonItems)
   }, [comparisonItems])
+
+  // Load shared items if provided
+  useEffect(() => {
+    if (!mounted || sharedIds.length === 0) return
+
+    const loadSharedItems = async () => {
+      setIsLoading(true)
+
+      try {
+        // Clear existing comparison items
+        clearComparison()
+
+        // Use the server action to fetch equipment items
+        startTransition(async () => {
+          const validItems = await getEquipmentByIds(sharedIds)
+
+          // Add items to comparison
+          validItems.forEach((item) => addToComparison(item))
+
+          // Update URL to remove the ids parameter
+          router.replace(`/${lang}/equipment/compare`, { scroll: false })
+
+          setIsLoading(false)
+        })
+      } catch (error) {
+        console.error("Error loading shared items:", error)
+        setIsLoading(false)
+      }
+    }
+
+    loadSharedItems()
+  }, [sharedIds, addToComparison, clearComparison, lang, router, mounted])
 
   // Update display items when comparison items change
   useEffect(() => {

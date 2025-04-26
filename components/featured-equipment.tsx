@@ -1,3 +1,6 @@
+"use client"
+
+import { useState, useEffect } from "react"
 import type { Locale } from "@/lib/i18n-config"
 import EquipmentGrid from "@/components/equipment-grid"
 import type { EquipmentItem } from "@/components/equipment-card"
@@ -14,6 +17,13 @@ interface FeaturedEquipmentProps {
 }
 
 export default function FeaturedEquipment({ dict, lang }: FeaturedEquipmentProps) {
+  const [mounted, setMounted] = useState(false)
+
+  // Only run after client-side hydration
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   // Mock data for featured equipment - no async operations
   const featuredEquipment: EquipmentItem[] = [
     {
@@ -92,6 +102,11 @@ export default function FeaturedEquipment({ dict, lang }: FeaturedEquipmentProps
     addedToCompare: lang === "ar" ? "تمت الإضافة" : "Added",
     comparisonFull: lang === "ar" ? "المقارنة ممتلئة" : "Comparison full",
     share: lang === "ar" ? "مشاركة" : "Share",
+  }
+
+  // Don't render the full component until after client-side hydration
+  if (!mounted) {
+    return <div className="h-96 animate-pulse bg-muted rounded-lg"></div>
   }
 
   return (

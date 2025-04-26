@@ -7,7 +7,6 @@ import OwnerDetails from "@/components/owner-details"
 import RentRequestForm from "@/components/rent-request-form"
 import RelatedEquipment from "@/components/related-equipment"
 import { ShareButton } from "@/components/share-button"
-import { getSiteBaseUrl } from "@/lib/utils-url"
 
 export default async function EquipmentDetailPage({
   params: { lang, id },
@@ -26,9 +25,8 @@ export default async function EquipmentDetailPage({
     )
   }
 
-  // Update the share URL generation
-  // Generate the share URL for this equipment
-  const shareUrl = `${getSiteBaseUrl()}/${lang}/equipment/${id}`
+  // Generate the share URL for this equipment - use relative URL for client-side processing
+  const shareUrl = `/${lang}/equipment/${id}`
   const shareTitle = equipment.name
   const shareDescription =
     equipment.description || `${equipment.category} - ${equipment.location} - ${equipment.dailyRate} KWD/day`

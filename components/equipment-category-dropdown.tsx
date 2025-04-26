@@ -48,6 +48,12 @@ export function EquipmentCategoryDropdown({
 }: EquipmentCategoryDropdownProps) {
   const [open, setOpen] = useState(false)
   const [selectedEquipment, setSelectedEquipment] = useState<{ category: string; subcategory: string } | null>(null)
+  const [mounted, setMounted] = useState(false)
+
+  // Only run this effect after component is mounted to avoid hydration issues
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   // Find the selected equipment details
   useEffect(() => {
@@ -90,6 +96,19 @@ export function EquipmentCategoryDropdown({
   const defaultPlaceholder = lang === "ar" ? "اختر فئة المعدات" : "Select equipment category"
   const defaultSearchPlaceholder = lang === "ar" ? "ابحث عن فئة..." : "Search for a category..."
   const defaultNoResultsText = lang === "ar" ? "لا توجد نتائج" : "No results found"
+
+  // Don't render the full component until after client-side hydration
+  if (!mounted) {
+    return (
+      <Button variant="outline" className={cn("w-full justify-between", className)}>
+        <div className="flex items-center gap-2 truncate">
+          {showIcon && <Wrench className="h-4 w-4 shrink-0 opacity-50" />}
+          <span className="truncate">{placeholder || defaultPlaceholder}</span>
+        </div>
+        <ChevronDown className="h-4 w-4 shrink-0 opacity-50" />
+      </Button>
+    )
+  }
 
   return (
     <Popover open={open} onOpenChange={setOpen}>

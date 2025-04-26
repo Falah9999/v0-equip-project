@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button"
 import ComparisonTable from "@/components/comparison-table"
 import { ShareButton } from "@/components/share-button"
 import type { Locale } from "@/lib/i18n-config"
-import { getSiteBaseUrl } from "@/lib/utils-url"
 
 export default async function ComparisonPage({
   params: { lang },
@@ -19,9 +18,8 @@ export default async function ComparisonPage({
   // Get the IDs from the URL if this is a shared comparison
   const sharedIds = searchParams.ids ? (Array.isArray(searchParams.ids) ? searchParams.ids : [searchParams.ids]) : []
 
-  // Generate the share URL for this comparison
-  const baseUrl = getSiteBaseUrl()
-  const shareUrl = `${baseUrl}/${lang}/equipment/compare${sharedIds.length > 0 ? `?ids=${sharedIds.join(",")}` : ""}`
+  // Generate the share URL for this comparison - use relative URL for client-side processing
+  const shareUrl = `/${lang}/equipment/compare${sharedIds.length > 0 ? `?ids=${sharedIds.join(",")}` : ""}`
   const shareTitle = lang === "ar" ? "مقارنة المعدات" : "Equipment Comparison"
   const shareDescription =
     lang === "ar"

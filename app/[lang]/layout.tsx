@@ -45,6 +45,10 @@ function FooterFallback() {
   return <div className="h-32 bg-muted animate-pulse"></div>
 }
 
+function ComparisonBarFallback() {
+  return null
+}
+
 export default function RootLayout({
   children,
   params,
@@ -80,13 +84,21 @@ export default function RootLayout({
           <ComparisonProvider>
             <div className="flex min-h-screen flex-col">
               <Suspense fallback={<HeaderFallback />}>
-                <Header lang={params.lang} />
+                <div>
+                  <Header lang={params.lang} />
+                </div>
               </Suspense>
               <main className="flex-1 pb-20">{children}</main>
               <Suspense fallback={<FooterFallback />}>
-                <Footer lang={params.lang} />
+                <div>
+                  <Footer lang={params.lang} />
+                </div>
               </Suspense>
-              <ComparisonBar lang={params.lang} labels={comparisonLabels} />
+              <Suspense fallback={<ComparisonBarFallback />}>
+                <div>
+                  <ComparisonBar lang={params.lang} labels={comparisonLabels} />
+                </div>
+              </Suspense>
             </div>
             <Toaster />
           </ComparisonProvider>

@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { Calendar } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -30,6 +30,12 @@ export default function SearchBar({ dict, lang, locations, categories }: SearchB
   const [category, setCategory] = useState("")
   const [location, setLocation] = useState("")
   const [date, setDate] = useState<Date | undefined>(undefined)
+  const [mounted, setMounted] = useState(false)
+
+  // Only run after client-side hydration
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
@@ -42,6 +48,20 @@ export default function SearchBar({ dict, lang, locations, categories }: SearchB
 
     // Navigate to equipment page with filters
     router.push(`/${lang}/equipment?${params.toString()}`)
+  }
+
+  // Don't render the full component until after client-side hydration
+  if (!mounted) {
+    return (
+      <div className="bg-white rounded-lg shadow-md p-4 md:p-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="h-10 bg-muted rounded-md animate-pulse"></div>
+          <div className="h-10 bg-muted rounded-md animate-pulse"></div>
+          <div className="h-10 bg-muted rounded-md animate-pulse"></div>
+          <div className="h-10 bg-primary/30 rounded-md animate-pulse"></div>
+        </div>
+      </div>
+    )
   }
 
   return (

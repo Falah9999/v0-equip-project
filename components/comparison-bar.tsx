@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button"
 import { ShareDialog } from "@/components/share-dialog"
 import { useComparison } from "@/contexts/comparison-context"
 import type { Locale } from "@/lib/i18n-config"
-import { getSiteBaseUrl } from "@/lib/utils-url"
 
 interface ComparisonBarProps {
   lang: Locale
@@ -27,12 +26,21 @@ export function ComparisonBar({ lang, labels }: ComparisonBarProps) {
   const [minimized, setMinimized] = useState(false)
   const [mounted, setMounted] = useState(false)
   const [shareDialogOpen, setShareDialogOpen] = useState(false)
+  const [shareUrl, setShareUrl] = useState("")
   const router = useRouter()
 
   // Only show after client-side hydration to prevent hydration mismatch
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  // Update share URL when comparison items change
+  useEffect(() => {
+    if (mounted && typeof window !== "undefined" && comparisonItems.length > 0) {
+      const itemIds = comparisonItems.map((item) => item.id).join(",")
+      setShareUrl(`${window.location.origin}/${lang}/equipment/compare?ids=${itemIds}`)
+    }
+  }, [comparisonItems, lang, mounted])
 
   if (!mounted) return null
   if (comparisonItems.length === 0) return null
@@ -49,10 +57,6 @@ export function ComparisonBar({ lang, labels }: ComparisonBarProps) {
     setShareDialogOpen(true)
   }
 
-  // Generate share URL for the current comparison
-  const baseUrl = getSiteBaseUrl()
-  const itemIds = comparisonItems.map((item) => item.id).join(",")
-  const shareUrl = `${baseUrl}/${lang}/equipment/compare?ids=${itemIds}`
   const shareTitle = lang === "ar" ? "مقارنة المعدات" : "Equipment Comparison"
   const shareDescription =
     lang === "ar"

@@ -1,3 +1,6 @@
+"use client"
+
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Truck, Hammer, Shovel, Forklift, Wrench, ConeIcon as Crane } from "lucide-react"
 
@@ -13,6 +16,13 @@ interface CategoryGridProps {
 }
 
 export default function CategoryGrid({ dict }: CategoryGridProps) {
+  const [mounted, setMounted] = useState(false)
+
+  // Only run after client-side hydration
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   const categories = [
     {
       id: "excavators",
@@ -51,6 +61,17 @@ export default function CategoryGrid({ dict }: CategoryGridProps) {
       image: "/placeholder.svg?height=200&width=200",
     },
   ]
+
+  // Don't render the full component until after client-side hydration
+  if (!mounted) {
+    return (
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        {[...Array(6)].map((_, index) => (
+          <div key={index} className="h-24 bg-muted rounded-lg animate-pulse"></div>
+        ))}
+      </div>
+    )
+  }
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">

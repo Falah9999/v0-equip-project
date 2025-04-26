@@ -1,4 +1,5 @@
 "use client"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Menu, Globe } from "lucide-react"
@@ -12,9 +13,17 @@ interface HeaderProps {
 
 export default function Header({ lang }: HeaderProps) {
   const pathname = usePathname()
+  const [mounted, setMounted] = useState(false)
+  const [pathnameWithoutLang, setPathnameWithoutLang] = useState("")
 
-  // Remove the language prefix from pathname - synchronous operation
-  const pathnameWithoutLang = pathname.replace(`/${lang}`, "") || "/"
+  // Only run this effect after component is mounted to avoid hydration issues
+  useEffect(() => {
+    setMounted(true)
+    // Remove the language prefix from pathname - synchronous operation
+    if (pathname) {
+      setPathnameWithoutLang(pathname.replace(`/${lang}`, "") || "/")
+    }
+  }, [pathname, lang])
 
   // Navigation links - static data, no async operations
   const navLinks = [
@@ -23,6 +32,11 @@ export default function Header({ lang }: HeaderProps) {
     { href: "/dashboard/owner", label: lang === "en" ? "Owner Dashboard" : "لوحة المالك" },
     { href: "/dashboard/renter", label: lang === "en" ? "Renter Dashboard" : "لوحة المستأجر" },
   ]
+
+  // Don't render the full component until after client-side hydration
+  if (!mounted) {
+    return <div className="border-b sticky top-0 z-50 bg-background h-16"></div>
+  }
 
   // Toggle language - synchronous operation
   const toggleLanguage = () => {
