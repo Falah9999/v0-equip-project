@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label"
 import { ShareButton } from "@/components/share-button"
 import { getSiteBaseUrl } from "@/lib/utils-url"
 import type { Locale } from "@/lib/i18n-config"
+import { baseUrl } from "@/lib/baseUrl"
 
 export function UrlTester({ lang }: { lang: Locale }) {
   const [baseUrl, setBaseUrl] = useState<string>("")
@@ -23,7 +24,7 @@ export function UrlTester({ lang }: { lang: Locale }) {
     setBaseUrl(getSiteBaseUrl())
 
     // Get the environment variable value directly
-    setEnvVarValue(process.env.NEXT_PUBLIC_SITE_URL || "Not set")
+    setEnvVarValue(baseUrl || "Not set")
 
     // Get window.location.origin
     setWindowOrigin(window.location.origin)
