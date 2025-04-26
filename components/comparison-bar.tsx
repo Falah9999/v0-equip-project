@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { ShareDialog } from "@/components/share-dialog"
 import { useComparison } from "@/contexts/comparison-context"
 import type { Locale } from "@/lib/i18n-config"
+import { getSiteBaseUrl } from "@/lib/utils-url"
 
 interface ComparisonBarProps {
   lang: Locale
@@ -49,7 +50,7 @@ export function ComparisonBar({ lang, labels }: ComparisonBarProps) {
   }
 
   // Generate share URL for the current comparison
-  const baseUrl = typeof window !== "undefined" ? window.location.origin : ""
+  const baseUrl = getSiteBaseUrl()
   const itemIds = comparisonItems.map((item) => item.id).join(",")
   const shareUrl = `${baseUrl}/${lang}/equipment/compare?ids=${itemIds}`
   const shareTitle = lang === "ar" ? "مقارنة المعدات" : "Equipment Comparison"
