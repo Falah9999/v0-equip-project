@@ -7,7 +7,6 @@ import { ShareDialog } from "@/components/share-dialog"
 import type { Locale } from "@/lib/i18n-config"
 
 interface ShareButtonProps {
-  // Ensure we're using the environment variable for the base URL
   url: string
   title: string
   description?: string
