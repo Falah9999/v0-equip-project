@@ -23,6 +23,7 @@ export function UrlTester({ lang }: { lang: Locale }) {
     setBaseUrl(getSiteBaseUrl())
 
     // Get the environment variable value directly
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || (typeof window !== "undefined" ? window.location.origin : "")
     setEnvVarValue(process.env.NEXT_PUBLIC_SITE_URL || "Not set")
 
     // Get window.location.origin

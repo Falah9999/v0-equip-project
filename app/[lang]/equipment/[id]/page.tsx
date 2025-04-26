@@ -26,6 +26,7 @@ export default async function EquipmentDetailPage({
     )
   }
 
+  // Update the share URL generation
   // Generate the share URL for this equipment
   const shareUrl = `${getSiteBaseUrl()}/${lang}/equipment/${id}`
   const shareTitle = equipment.name
