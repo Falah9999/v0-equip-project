@@ -20,7 +20,7 @@ export default function ComparisonTable({ lang, sharedIds = [] }: ComparisonTabl
   const { comparisonItems, removeFromComparison, addToComparison, clearComparison } = useComparison()
   const [mounted, setMounted] = useState(false)
   const [displayItems, setDisplayItems] = useState<EquipmentItem[]>([])
-  const [isLoading, setIsLoading] = useState(sharedIds.length > 0)
+  const [isLoading, setIsLoading] = useState(false)
   const [isPending, startTransition] = useTransition()
   const router = useRouter()
 
@@ -28,13 +28,9 @@ export default function ComparisonTable({ lang, sharedIds = [] }: ComparisonTabl
   useEffect(() => {
     setMounted(true)
     setDisplayItems(comparisonItems)
-  }, [comparisonItems])
 
-  // Load shared items if provided
-  useEffect(() => {
-    if (!mounted || sharedIds.length === 0) return
-
-    const loadSharedItems = async () => {
+    // Load shared items if provided
+    if (sharedIds.length > 0) {
       setIsLoading(true)
 
       try {
@@ -58,17 +54,9 @@ export default function ComparisonTable({ lang, sharedIds = [] }: ComparisonTabl
         setIsLoading(false)
       }
     }
+  }, [sharedIds, addToComparison, clearComparison, lang, router, comparisonItems])
 
-    loadSharedItems()
-  }, [sharedIds, addToComparison, clearComparison, lang, router, mounted])
-
-  // Update display items when comparison items change
-  useEffect(() => {
-    if (mounted) {
-      setDisplayItems(comparisonItems)
-    }
-  }, [comparisonItems, mounted])
-
+  // Don't render the full component until after client-side hydration
   if (!mounted || isLoading || isPending) {
     return (
       <div className="h-96 flex items-center justify-center">

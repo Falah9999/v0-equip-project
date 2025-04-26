@@ -18,83 +18,86 @@ interface FeaturedEquipmentProps {
 
 export default function FeaturedEquipment({ dict, lang }: FeaturedEquipmentProps) {
   const [mounted, setMounted] = useState(false)
+  const [featuredEquipment, setFeaturedEquipment] = useState<EquipmentItem[]>([])
 
   // Only run after client-side hydration
   useEffect(() => {
     setMounted(true)
-  }, [])
 
-  // Mock data for featured equipment - no async operations
-  const featuredEquipment: EquipmentItem[] = [
-    {
-      id: "1",
-      name: lang === "en" ? "Caterpillar Excavator 320" : "حفارة كاتربيلر 320",
-      category: lang === "en" ? "Excavators" : "حفارات",
-      subcategory: lang === "en" ? "Tracked Excavators" : "حفارات مجنزرة",
-      location: lang === "en" ? "Kuwait City" : "مدينة الكويت",
-      governorate: lang === "en" ? "Capital" : "العاصمة",
-      dailyRate: 120,
-      weeklyRate: 700,
-      available: true,
-      image: "/placeholder.svg?height=300&width=400",
-      specs: {
-        Brand: "Caterpillar",
-        Model: "320",
-        Year: 2020,
+    // Mock data for featured equipment - set it in the effect to avoid creating promises during rendering
+    const mockFeaturedEquipment: EquipmentItem[] = [
+      {
+        id: "1",
+        name: lang === "en" ? "Caterpillar Excavator 320" : "حفارة كاتربيلر 320",
+        category: lang === "en" ? "Excavators" : "حفارات",
+        subcategory: lang === "en" ? "Tracked Excavators" : "حفارات مجنزرة",
+        location: lang === "en" ? "Kuwait City" : "مدينة الكويت",
+        governorate: lang === "en" ? "Capital" : "العاصمة",
+        dailyRate: 120,
+        weeklyRate: 700,
+        available: true,
+        image: "/placeholder.svg?height=300&width=400",
+        specs: {
+          Brand: "Caterpillar",
+          Model: "320",
+          Year: 2020,
+        },
       },
-    },
-    {
-      id: "2",
-      name: lang === "en" ? "Bobcat Skid Steer Loader" : "بوبكات لودر انزلاقي",
-      category: lang === "en" ? "Loaders" : "لودرات",
-      subcategory: lang === "en" ? "Skid Steer Loaders" : "لودرات انزلاقية",
-      location: lang === "en" ? "Salmiya" : "السالمية",
-      governorate: lang === "en" ? "Hawally" : "حولي",
-      dailyRate: 85,
-      weeklyRate: 500,
-      available: true,
-      image: "/placeholder.svg?height=300&width=400",
-      specs: {
-        Brand: "Bobcat",
-        Model: "S650",
-        Year: 2021,
+      {
+        id: "2",
+        name: lang === "en" ? "Bobcat Skid Steer Loader" : "بوبكات لودر انزلاقي",
+        category: lang === "en" ? "Loaders" : "لودرات",
+        subcategory: lang === "en" ? "Skid Steer Loaders" : "لودرات انزلاقية",
+        location: lang === "en" ? "Salmiya" : "السالمية",
+        governorate: lang === "en" ? "Hawally" : "حولي",
+        dailyRate: 85,
+        weeklyRate: 500,
+        available: true,
+        image: "/placeholder.svg?height=300&width=400",
+        specs: {
+          Brand: "Bobcat",
+          Model: "S650",
+          Year: 2021,
+        },
       },
-    },
-    {
-      id: "3",
-      name: lang === "en" ? "Concrete Mixer CM350" : "خلاطة خرسانة CM350",
-      category: lang === "en" ? "Tools" : "أدوات",
-      subcategory: lang === "en" ? "Concrete Tools" : "أدوات خرسانية",
-      location: lang === "en" ? "Hawally" : "حولي",
-      governorate: lang === "en" ? "Hawally" : "حولي",
-      dailyRate: 50,
-      weeklyRate: 300,
-      available: false,
-      image: "/placeholder.svg?height=300&width=400",
-      specs: {
-        Brand: "PowerMix",
-        Model: "CM350",
-        "Drum Capacity": "350 liters",
+      {
+        id: "3",
+        name: lang === "en" ? "Concrete Mixer CM350" : "خلاطة خرسانة CM350",
+        category: lang === "en" ? "Tools" : "أدوات",
+        subcategory: lang === "en" ? "Concrete Tools" : "أدوات خرسانية",
+        location: lang === "en" ? "Hawally" : "حولي",
+        governorate: lang === "en" ? "Hawally" : "حولي",
+        dailyRate: 50,
+        weeklyRate: 300,
+        available: false,
+        image: "/placeholder.svg?height=300&width=400",
+        specs: {
+          Brand: "PowerMix",
+          Model: "CM350",
+          "Drum Capacity": "350 liters",
+        },
       },
-    },
-    {
-      id: "4",
-      name: lang === "en" ? "Mobile Crane MC200" : "رافعة متنقلة MC200",
-      category: lang === "en" ? "Cranes" : "رافعات",
-      subcategory: lang === "en" ? "Mobile Cranes" : "رافعات متنقلة",
-      location: lang === "en" ? "Farwaniya" : "الفروانية",
-      governorate: lang === "en" ? "Farwaniya" : "الفروانية",
-      dailyRate: 200,
-      weeklyRate: 1200,
-      available: true,
-      image: "/placeholder.svg?height=300&width=400",
-      specs: {
-        Brand: "Liebherr",
-        Model: "MC200",
-        "Max Lifting Capacity": "200 tons",
+      {
+        id: "4",
+        name: lang === "en" ? "Mobile Crane MC200" : "رافعة متنقلة MC200",
+        category: lang === "en" ? "Cranes" : "رافعات",
+        subcategory: lang === "en" ? "Mobile Cranes" : "رافعات متنقلة",
+        location: lang === "en" ? "Farwaniya" : "الفروانية",
+        governorate: lang === "en" ? "Farwaniya" : "الفروانية",
+        dailyRate: 200,
+        weeklyRate: 1200,
+        available: true,
+        image: "/placeholder.svg?height=300&width=400",
+        specs: {
+          Brand: "Liebherr",
+          Model: "MC200",
+          "Max Lifting Capacity": "200 tons",
+        },
       },
-    },
-  ]
+    ]
+
+    setFeaturedEquipment(mockFeaturedEquipment)
+  }, [lang])
 
   // Comparison labels
   const comparisonLabels = {
@@ -106,7 +109,13 @@ export default function FeaturedEquipment({ dict, lang }: FeaturedEquipmentProps
 
   // Don't render the full component until after client-side hydration
   if (!mounted) {
-    return <div className="h-96 animate-pulse bg-muted rounded-lg"></div>
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[...Array(4)].map((_, index) => (
+          <div key={index} className="h-64 bg-muted rounded-lg animate-pulse"></div>
+        ))}
+      </div>
+    )
   }
 
   return (

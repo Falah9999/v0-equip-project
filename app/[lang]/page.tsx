@@ -46,13 +46,19 @@ export default async function Home({
         </Suspense>
       </section>
 
-      <PromotionalBanner dict={dict.promo} />
+      <section className="my-12">
+        <Suspense fallback={<div className="h-64 bg-muted rounded-lg animate-pulse"></div>}>
+          <div>
+            <PromotionalBanner dict={dict.promo} />
+          </div>
+        </Suspense>
+      </section>
 
       <section className="my-12">
         <h2 className="text-2xl font-semibold mb-6">{dict.home.categories}</h2>
         <Suspense fallback={<CategoryGridFallback />}>
           <div>
-            <CategoryGrid dict={dict.categories} />
+            <CategoryGrid dict={dict.categories} lang={lang} />
           </div>
         </Suspense>
       </section>

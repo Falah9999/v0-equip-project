@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Truck, Hammer, Shovel, Forklift, Wrench, ConeIcon as Crane } from "lucide-react"
+import type { Locale } from "@/lib/i18n-config"
 
 interface CategoryGridProps {
   dict: {
@@ -13,9 +14,10 @@ interface CategoryGridProps {
     tools: string
     other: string
   }
+  lang: Locale
 }
 
-export default function CategoryGrid({ dict }: CategoryGridProps) {
+export default function CategoryGrid({ dict, lang }: CategoryGridProps) {
   const [mounted, setMounted] = useState(false)
 
   // Only run after client-side hydration
@@ -78,7 +80,7 @@ export default function CategoryGrid({ dict }: CategoryGridProps) {
       {categories.map((category) => (
         <Link
           key={category.id}
-          href={`/equipment?category=${category.id}`}
+          href={`/${lang}/equipment?category=${category.id}`}
           className="flex flex-col items-center p-4 rounded-lg border bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow"
         >
           <div className="w-16 h-16 flex items-center justify-center rounded-full bg-primary/10 mb-3">
